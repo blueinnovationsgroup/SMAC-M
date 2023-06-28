@@ -42,6 +42,6 @@ CTY=10
 [paths]
 chartsymbols = "../chart-installation/generate_map_files/resources/chartsymbols/chartsymbols_dfo.xml"
 ruleset = "../chart-installation/generate_map_files/resources/rules"
-chart = "../../noaa_enc/ENC_ROOT/"
-data = "../../noaa_enc/shp/"
-map = "../../noaa_enc/map"
+chart = "../../ENC_ROOT"
+data = "../../shp"
+map = "../../map"

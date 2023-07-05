@@ -25,7 +25,7 @@ def main() -> None:
                         type=Path)
     args = parser.parse_args()
 
-    for level in '123456':
+    for level in '12345':
         extract_soundings(args.data_directory, level)
 
 

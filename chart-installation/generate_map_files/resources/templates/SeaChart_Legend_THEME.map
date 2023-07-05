@@ -14,7 +14,7 @@ MAP
     END
 
     IMAGETYPE png
-    CONFIG "PROJ_LIB" "../epsg"
+    # CONFIG "PROJ_LIB" "../epsg"
     FONTSET '${FONTS_PATH}'
     SYMBOLSET "../symbols/symbols.sym"
     OUTPUTFORMAT

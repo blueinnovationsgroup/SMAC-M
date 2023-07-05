@@ -130,9 +130,10 @@ main () {
 
 
 # get_s57data
-# python3 gen_obj.py
-
+python3 gen_obj.py
 main
+python3 convert_labels.py "${SHPDIR}" NATSUR
+python3 extract_soundings.py "${SHPDIR}"
 exit 1
 
 # Step 3

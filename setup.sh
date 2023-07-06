@@ -5,6 +5,7 @@ installDeps () {
   sudo apt-get install -y python3 python3-pip python3-venv build-essential \
     imagemagick xmlstarlet gdal-bin python3-gdal libgdal-dev
   pip install Pipfile
+  pip install wand
 }
 
 # setup_virtual_env () {

@@ -32,5 +32,7 @@ get_s57data () {
 setup_env
 init_output_dirs
 get_s57data
+echo "Generating SHP files..."
 python3 ./bin/generate_shapefiles.py ./noaa/config.enc.noaa.toml
+echo "Generating MAP files..."
 python3 ./chart-installation/generate_map_files/generate_map_config.py ./noaa/config.enc.noaa.toml

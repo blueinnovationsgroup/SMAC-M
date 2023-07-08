@@ -52,7 +52,9 @@ append_layer () {
             output_shp=${SHPDIR}/${usage}/CL${usage}_${layer}_${type}.shp
         fi
                     
-        ogr2ogr -append -skipfailures -f "ESRI Shapefile" --config S57_PROFILE iw $output_shp $where $_FILE $layer >> /tmp/errors 2>&1 
+        ogr2ogr -append -skipfailures -f "ESRI Shapefile" $output_shp $where $_FILE $layer >> /tmp/errors 2>&1 
+        # TBD: Not sure why "--config S57_PROFILE iw" works on my Ubuntu for WSL but not on Ubuntu 22.04 in a docker containe or native demo machine.
+        # ogr2ogr -append -skipfailures -f "ESRI Shapefile" --config S57_PROFILE iw $output_shp $where $_FILE $layer >> /tmp/errors 2>&1 
         
         # add a special dataset to support Lignts signature...
         # if [[ "${layer}" == "LIGHTS" ]]

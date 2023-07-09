@@ -73,7 +73,7 @@ GDAL 2.2.2, released ...
 $ ls /usr/share/gdal/
 2.2
 ```
-Create up to date s57 object files in GDAL data folder `/usr/share/gdal/2.2/`
+Create up to date s57 object files in GDAL data folder `/usr/share/gdal`
 ```
 $ wget https://raw.githubusercontent.com/OpenCPN/OpenCPN/master/data/s57data/s57objectclasses.csv
 $ wget https://raw.githubusercontent.com/OpenCPN/OpenCPN/master/data/s57data/s57attributes.csv

@@ -52,20 +52,7 @@ append_layer () {
             output_shp=${SHPDIR}/${usage}/CL${usage}_${layer}_${type}.shp
         fi
                     
-        ogr2ogr -append -skipfailures -f "ESRI Shapefile" $output_shp $where $_FILE $layer >> /tmp/errors 2>&1 
-        # TBD: Not sure why "--config S57_PROFILE iw" works on my Ubuntu for WSL but not on Ubuntu 22.04 in a docker containe or native demo machine.
-        # ogr2ogr -append -skipfailures -f "ESRI Shapefile" --config S57_PROFILE iw $output_shp $where $_FILE $layer >> /tmp/errors 2>&1 
-        
-        # add a special dataset to support Lignts signature...
-        # if [[ "${layer}" == "LIGHTS" ]]
-        # then
-        #     cat=CL${usage}_${layer}_${type}
-
-        #     # using cast(${cat}.HEIGHT as numeric(30,5)) -> https://trac.osgeo.org/gdal/ticket/6803
-        #     echoon
-        #     ogr2ogr -sql "SELECT ${cat}.VALNMR as VALNMR,  ${cat}.LITCHR as LITCHR, ${cat}.SIGGRP as SIGGRP, cast(${cat}.SIGPER as numeric(4,1)) as SIGPER, cast(${cat}.HEIGHT as numeric(30,5))  as HEIGHT, ${cat}.COLOUR as COLOUR, ${cat}.EXCLIT as EXCLIT,litchr_code.Meaning as Meaning,colour_code.Colour_code as Colour_cod FROM '${output_shp}'.${cat} LEFT JOIN 'litchr_code.csv'.litchr_code litchr_code ON ${cat}.LITCHR = litchr_code.ID LEFT JOIN  'colour_code.csv'.colour_code colour_code ON ${cat}.COLOUR = colour_code.ID" ${SHPDIR}/${usage}/CL${usage}_${layer}_${type}_SIGNATURE.shp ${output_shp}
-        #     { echooff; } 2>/dev/null
-        # fi
+        ogr2ogr -append -skipfailures -f "ESRI Shapefile" --config S57_PROFILE iw $output_shp $where $_FILE $layer >> /tmp/errors 2>&1 
     fi
   done
 }
@@ -103,10 +90,3 @@ python3 gen_obj.py
 main
 python3 convert_labels.py "${SHPDIR}" NATSUR
 python3 extract_soundings.py "${SHPDIR}"
-
-# Run script to build light sector shapefiles
-# TODO: build a better integration.  Need modification on python script
-# for level in {1..5}; do 
-#   LIGHTS=${SHPDIR}/${level}/CL${level}_LIGHTS_POINT.shp
-#   [ -e $LIGHTS ] && python3 generate_light_sector.py $LIGHTS 3000 || true
-# done

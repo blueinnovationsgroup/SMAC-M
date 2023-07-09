@@ -24,9 +24,14 @@ init_output_dirs () {
 }
 
 get_s57data () {
-  wget https://raw.githubusercontent.com/OpenCPN/OpenCPN/master/data/s57data/s57objectclasses.csv -O s57objectclasses.csv $WGET_QUIET
-  wget https://raw.githubusercontent.com/OpenCPN/OpenCPN/master/data/s57data/s57attributes.csv -O s57attributes.csv $WGET_QUIET
+  wget https://raw.githubusercontent.com/OpenCPN/OpenCPN/master/data/s57data/s57objectclasses.csv -O s57objectclasses.csv 
+  wget https://raw.githubusercontent.com/OpenCPN/OpenCPN/master/data/s57data/s57attributes.csv -O s57attributes.csv
   cp s57objectclasses.csv s57attributes.csv ./chart-installation/data_files_conversion/shp_s57data
+
+  # Also copy to /usr/share/gdal with "_iw" suffix so that OGR can use the correct S57 profile
+  # for intercoastal waterways (iw)
+  cp s57objectclasses.csv /usr/share/gdal/s57objectclasses_iw.csv
+  cp s57attributes.csv /usr/share/gdal/s57attributes_iw.csv
 }
 
 setup_env

@@ -1,5 +1,12 @@
-- name: Publish
-  # env:
-  #   GITHUB_TOKEN: "${{ secrets.RELEASE_REPO_SECRET }}"
-  run: |
-    gh release create v0.0.1 foobar.zip -R https://github.com/your/repo-here
+name: Publish
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    steps:
+      - run: gh release create v0.0.1 foobar.zip -R https://github.com/your/repo-here
